@@ -1,0 +1,22 @@
+AWSTemplateFormatVersion : '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: AWS Lambda Sample Project
+
+Resources:
+
+  Products:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: com.example.handler.LambdaHandler
+      CodeUri: ./target/lambda-project-1.0-SNAPSHOT.jar
+      Runtime: java8
+      Timeout: 300
+      Environment:
+        Variables:
+          ENVIRONMENT: "test"
+      Events:
+        ListProducts:
+          Type: Api
+          Properties:
+            Path: /lambda
+            Method: post
